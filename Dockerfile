@@ -16,10 +16,11 @@ RUN \
 RUN \
   mkdir data && \
   pushd data && \
+  mkdir unzip && \
   wget https://github.com/samtools/htslib/releases/download/1.4/htslib-1.4.tar.bz2 && \
-  tar -xvjf htslib-* && \
-  pushd htslib*!(tar*) && make && make install && popd && \
+  tar -xvjf htslib-* -C unzip/ && \
+  pushd unzip && pushd htslib* && make && make install && popd && popd && \
   popd && \
-  rmdir data
+  rm -rf data/
 
 CMD ["bash"]
