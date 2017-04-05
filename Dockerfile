@@ -16,7 +16,7 @@ RUN \
   pushd data && \
   wget https://github.com/samtools/htslib/releases/download/1.4/htslib-1.4.tar.bz2 && \
   tar -xvjf htslib-* && \
-  pushd htslib*!(tar*) && make && make install ; popd && \
+  pushd htslib*!(tar*) && make && make install && popd && \
   popd && \
   rmdir data
 
