@@ -36,7 +36,7 @@ RUN \
   pushd bcftools* && make && make install && popd && \
   pushd samtools* && make && make install && popd && \
   pushd bedtools* && make && make install && popd && \
-  pushd bedops* && make && make install && popd && \
+  pushd bin* && make && make install && popd && \
   pushd vcftools* && ./autogen.sh && ./configure && make && make install && popd && \
   popd && \
   popd && \
