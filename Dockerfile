@@ -6,22 +6,39 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 RUN \
   apt-get update && \
-  #apt-get -y dist-upgrade && \
-  apt-get install -y build-essential openssh-client libsasl2-dev libldap2-dev libssl-dev jq git wget zlib1g-dev libbz2-dev liblzma-dev
-  #apt-get install -y python2.7 python2.7-dev python-virtualenv python-pip python-pip-whl && \
-  #apt-get install -y python3.5 python3.5-dev python3.5-venv && \
-  #apt-get clean && \
-  #ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
-  #echo $TZ > /etc/timezone && \
-  #dpkg-reconfigure -f noninteractive tzdata
+  apt-get -y dist-upgrade && \
+  apt-get install -y build-essential openssh-client libsasl2-dev libldap2-dev libssl-dev jq git wget zlib1g-dev libbz2-dev liblzma-dev && \
+  apt-get install -y python2.7 python2.7-dev python-virtualenv python-pip python-pip-whl && \
+  apt-get install -y python3.5 python3.5-dev python3.5-venv && \
+  apt-get clean && \
+  ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
+  echo $TZ > /etc/timezone && \
+  dpkg-reconfigure -f noninteractive tzdata
 
 RUN \
   mkdir data && \
   pushd data && \
   mkdir unzip && \
+  wget https://github.com/samtools/samtools/releases/download/1.4/samtools-1.4.tar.bz2 && \
+  wget https://github.com/samtools/bcftools/releases/download/1.4/bcftools-1.4.tar.bz2 && \
   wget https://github.com/samtools/htslib/releases/download/1.4/htslib-1.4.tar.bz2 && \
+  wget https://github.com/arq5x/bedtools2/releases/download/v2.26.0/bedtools-2.26.0.tar.gz && \
+  wget https://github.com/bedops/bedops/releases/download/v2.4.26/bedops_linux_x86_64-v2.4.26.tar.bz2 && \
+  wget https://github.com/vcftools/vcftools/tarball/master && \
   tar -xvjf htslib-* -C unzip/ && \
-  pushd unzip && pushd htslib* && make && make install && popd && popd && \
+  tar -xvjf bcftools-* -C unzip/ && \
+  tar -xvjf samtools-* -C unzip/ && \
+  tar -xvjf bedtools-* -C unzip/ && \
+  tar -xvjf bedops-* -C unzip/ && \
+  tar -xvjf master-* -C unzip/ && \
+  pushd unzip && \
+  pushd htslib* && make && make install && popd && \
+  pushd bcftools* && make && make install && popd && \
+  pushd samtools* && make && make install && popd && \
+  pushd bedtools* && make && make install && popd && \
+  pushd bedops* && make && make install && popd && \
+  pushd vcftools* && ./autogen.sh && ./configure && make && make install && popd && \
+  popd && \
   popd && \
   rm -rf data/
 
