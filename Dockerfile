@@ -25,12 +25,12 @@ RUN \
   wget https://github.com/arq5x/bedtools2/releases/download/v2.26.0/bedtools-2.26.0.tar.gz && \
   wget https://github.com/bedops/bedops/releases/download/v2.4.26/bedops_linux_x86_64-v2.4.26.tar.bz2 && \
   wget https://github.com/vcftools/vcftools/tarball/master && \
-  tar -xvjf htslib-* -C unzip/ && \
-  tar -xvjf bcftools-* -C unzip/ && \
-  tar -xvjf samtools-* -C unzip/ && \
-  tar -xvf bedtools-* -C unzip/ && \
-  tar -xvjf bedops-* -C unzip/ && \
-  tar -xvf master-* -C unzip/ && \
+  tar -xvjf htslib* -C unzip/ && \
+  tar -xvjf bcftools* -C unzip/ && \
+  tar -xvjf samtools* -C unzip/ && \
+  tar -xvf bedtools* -C unzip/ && \
+  tar -xvjf bedops* -C unzip/ && \
+  tar -xvf master* -C unzip/ && \
   pushd unzip && \
   pushd htslib* && make && make install && popd && \
   pushd bcftools* && make && make install && popd && \
