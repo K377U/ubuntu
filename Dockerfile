@@ -28,9 +28,9 @@ RUN \
   tar -xvjf htslib-* -C unzip/ && \
   tar -xvjf bcftools-* -C unzip/ && \
   tar -xvjf samtools-* -C unzip/ && \
-  tar -xvjf bedtools-* -C unzip/ && \
+  tar -xvf bedtools-* -C unzip/ && \
   tar -xvjf bedops-* -C unzip/ && \
-  tar -xvjf master-* -C unzip/ && \
+  tar -xvf master-* -C unzip/ && \
   pushd unzip && \
   pushd htslib* && make && make install && popd && \
   pushd bcftools* && make && make install && popd && \
