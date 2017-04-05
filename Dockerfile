@@ -11,6 +11,13 @@ RUN \
   apt-get clean && \
   ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
   echo $TZ > /etc/timezone && \
-  dpkg-reconfigure -f noninteractive tzdata
+  dpkg-reconfigure -f noninteractive tzdata && \
+  mkdir data && \
+  pushd data && \
+  wget https://github.com/samtools/htslib/releases/download/1.4/htslib-1.4.tar.bz2 && \
+  tar -xvjf htslib-* && \
+  pushd htslib*!(tar*) && make && make install ; popd && \
+  popd && \
+  rmdir data
 
 CMD ["bash"]
