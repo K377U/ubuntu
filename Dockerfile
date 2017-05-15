@@ -8,8 +8,8 @@ RUN \
   apt-get update && \
   apt-get -y dist-upgrade && \
   apt-get install -y build-essential openssh-client libsasl2-dev libldap2-dev libssl-dev libcurl4-openssl-dev jq git wget zlib1g-dev libbz2-dev liblzma-dev libncurses5-dev dh-autoreconf pkg-config autoconf && \
-  apt-get install -y python2.7 python2.7-dev python-virtualenv python-pip python-pip-whl && \
-  apt-get install -y python3.5 python3.5-dev python3.5-venv python3-tk && \
+  apt-get install -y python2.7 python2.7-dev python-virtualenv python-pip python-pip-whl python-six && \
+  apt-get install -y python3.5 python3.5-dev python3.5-venv python3-tk python3-six && \
   apt-get clean && \
   ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
   echo $TZ > /etc/timezone && \
